@@ -1,0 +1,316 @@
+Short:    MapROM tool for phase5/DCE turbos. V1.24.
+Author:   sintonen@iki.fi (Harry "Piru" Sintonen)
+Uploader: sintonen@iki.fi (Harry "Piru" Sintonen)
+Type:     util/boot
+Requires: OS 1.2+, phase5/DCE turbo with MAPROM feature or CPU Card
+Version:  1.24
+Replaces: util/boot/BlizKick.lha
+
+BlizKick is used to rekick any Kickstart ROM image with Blizzard turbo
+boards having MAPROM feature (jumper). Also A4000 CPU & Cyberstorm Cards
+should work. BlizKick has been tested with BLIZZARD 1230-I, 1230-II,
+1230-III, 1230-IV, 1240-T/ERC, 1260, 2040-ERC, 2060, Cyberstorm MK I,
+Cyberstorm MK II, Cyberstorm MK III, CyberStorm PPC, Blizzard PPC and
+A3640 boards. Kickstart 1.2, 1.3, 2.04, 2.05, 3.0 and 3.1 are currently
+tested ROM images.
+
+ BlizKick main features include:
+
+- Speed up system operation noticeably!
+- Allow you to upgrade the Kickstart ROM. Allow you to use AmigaOS 3.5
+  and 3.9 with machine that has pre-3.1 ROM on chip. HOWEVER, PLEASE, DO
+  NOT PIRATE THE KICKSTART ROM!
+- Reduce the number of reboots needed on system cold boot. PrepareEmul,
+  RsrvCold, SoftSCSI, BPPCFix and AmigaOS 3.5/3.9 SetPatch extra reboot
+  can be removed!
+- Allow you to downgrade the Kickstart ROM to play old games!
+- Can patch the Kickstart ROM with external modules, comes with dozens
+  of plug'n'play modules, speeding up and improving system operation,
+  fixing Kickstart ROM bugs and so on!
+- Full source code is included, in case you feel like hacking. :-)
+
+*NEW* in V1.24:
+
+- This is the BlizKick 1.24 final release.
+- Fixed a bug in Cyberstorm memlist scanner.
+- Added WinUAE support.
+- Updated BlizKick.guide.
+
+- Modified files since 1.24rc5:
+    BlizKick.readme
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/BlizKick.guide
+
+         V1.24rc5:
+
+- Fixed embarrasing bug from mmuapi (loadresident and protectextresbuf),
+  it didn't work on 68040 systems with p5/dce 68040.library (report by
+  Marcin Kurek).
+- Updated BlizKick EXTRES buffer API (bkapi.lha).
+- Fixed a silly bug in PatchMath020 module, it only patched the first
+  matching routine (report again by Marcin Kurek).
+- Fixed applypatch reporting bogus errormsg when kickfile doesn't exist.
+- Updated BlizKick.guide.
+
+- Modified files since 1.24rc4:
+    BlizKick.readme
+    BlizKick/applypatch
+    BlizKick/applypatch.e
+    BlizKick/bkapi.lha
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/BlizKick.guide
+    BlizKick/loadresident
+    BlizKick/protectextresbuf
+    BlizKick/Modules/PatchMath020
+    BlizKick/Modules/PatchMath020.ASM
+
+         V1.24rc4:
+
+- Added new tool for MMU writeprotecting EXTRESBUF: protectextresbuf.
+  It work with both p5/dce 680x0.library and mmu.library. (kindly
+  betatested by KennyR, Cap`n^HIT, jPV and Hercules).
+  WARNING! Read the documentation about protectextresbuf before use!
+- Updated BlizKick EXTRES buffer API (bkapi.lha).
+- Updated loadresident to use the new EXTRES buffer API.
+- Fixed SpeedyIDE module to work with OS3.9BB2 scsi.device (several
+  reports, special thanks to Joru for betatesting).
+- Updated BlizKick.guide.
+
+- Modified files since 1.24rc3:
+    BlizKick.readme
+    BlizKick/bkapi.lha
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/BlizKick.guide
+    BlizKick/install_script
+    BlizKick/loadresident
+    BlizKick/protectextresbuf
+    BlizKick/Modules/SpeedyIDE
+    BlizKick/Modules/SpeedyIDE.ASM
+
+         V1.24rc3:
+
+- Fixed V45 exec.library of AmigaOS 3.9 BoingBag2. It use quite crude
+  hack to enable it, you'd better have true 32bit memory that doesn't go
+  away at reset for this to work. Works on my BlizzPPC, Wizor's & SMF^'s
+  Blizzard 1260, Cyber2th's CSMkII and Zerohero's Blizzard 2060 at
+  least. YMMV. Note that this hack automagically fix some buggy programs
+  that peek $f80000 for version information. Thanks to my impatient
+  betatesters: Wizor, Jagge, Cyber2th, Zerohero, SMF^ and Lizard.
+  Special thanks to Lizard for bugging me about this. Also thanks to
+  everyone who mailed me about the problem.
+- Improved romfixes module: No longer fail whole module if some
+  sub-patch fail. Now it should be possible to use romfixes as the last
+  module.
+
+- Modified files since 1.24rc2:
+    BlizKick.readme
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/Modules/romfixes
+    BlizKick/Modules/romfixes.ASM
+
+         V1.24rc2:
+
+- Updated romupdatesplit to handle OS 3.9 BoingBag2. It kind of worked
+  before too, but named some modules unknown.
+
+- Modified files since 1.24rc1:
+    BlizKick.readme
+    BlizKick/romupdatesplit
+    BlizKick/romupdatesplit.e
+
+         V1.24rc1:
+
+- Now set destination function code (dfc) for pflusha on 68040 and
+  68060. It could fix some systems where dfc is not 1 or 2 by default
+  and that have some magic supervisor mmu mapping.
+- Unless something critical show up, this could become the final
+  BlizKick 1.24 release.
+
+- Modified files since 1.24beta8:
+    BlizKick.readme
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/BlizKick.guide
+
+         V1.24beta8:
+
+- Fixed silly bug from mmu.library support, now BlizKick try to use
+  mmu.library if SetPatch is run *and* mmu.library is loaded in memory.
+- Fixed a silly bug: If initializing MAPROM failed, BlizKick crashed
+  horribly (could only happen with Blizzard 2040-ETC and 2060 cards
+  MAPROM disabled).
+- Added KEEPEXEC option to reboot without killing exec.library. Read
+  the documentation before using!
+- Fixed PowerUP card (CyberStorm PPC (and MK III), and Blizzard PPC)
+  reboot code to kill exec.library, like with other cards. This fix
+  some weirdo crashes from some reset proof applications that don't
+  like ROM version changing on them.
+- Fixed the infamous "RED screen crash at cold start" problem with
+  some PowerUP cards by adding NOPUPREBOOT option.
+- Improved romfixes module: Added graphics/InitArea() patch.
+- Added new module: MuMove4K prepares system memory for MuFastZero's
+  FastExec option. Substitutes MuMove4K by Thomas Richter.
+
+- Modified files since 1.24beta7:
+    BlizKick.readme
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/BlizKick.guide
+    BlizKick/Modules/MuMove4K
+    BlizKick/Modules/MuMove4K.ASM
+    BlizKick/Modules/romfixes
+    BlizKick/Modules/romfixes.ASM
+
+         V1.24beta7 (internal beta release):
+
+- Fixed BlizKick main program to work with 20011012 PowerUP flashrom.
+  (several reports)
+- Modified files since 1.24beta6:
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+
+         V1.24beta6:
+
+- Fixed a deadly bug from FixGetMsg module. (Marcin Kurek)
+- Added EXTRESBUF support for CPU Cards. (^Berserk^)
+- Now MODULE's default directory default to "DEVS:Modules/" directory if
+  BKMODPATH env variable cannot be found. (Lizard) Added IGNPATH=
+  IGNOREBKMODPATH/S option to ignore the directory change completely.
+- Changed applypatch program to default BKMODPATH like BlizKick main
+  program.
+- Fixed RebootFix module to work with exec44. (several reports)
+- Reworked some internal BlizKick routines, hopefully B20x0's work better
+  now. Lets hope I didn't break anything. :) (vege)
+- Fixed romfixes module: It no longer fail if put after OS3.5/3.9
+  console.device module (several reports).
+- Updated "romupdatesplit" and "AmigaOS 3.5/3.9 single boot system"
+  guide chapters. (Téfal)
+- Modified files since 1.24beta5:
+    BlizKick.readme
+    BlizKick/applypatch
+    BlizKick/applypatch.e
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/BlizKick.guide
+    BlizKick/Modules/FixGetMsg
+    BlizKick/Modules/FixGetMsg.ASM
+    BlizKick/Modules/RebootFix
+    BlizKick/Modules/RebootFix.ASM
+    BlizKick/Modules/romfixes
+    BlizKick/Modules/romfixes.ASM
+
+         V1.24beta5:
+
+- Stripped this massive readme to only include changes since latest
+  Aminet release. Now has a real 'main features' chapter.
+- BlizKick work just fine with AmigaOS 3.9, modified the guide
+  accordingly.
+- Improved hackdisk module: Made it possible to patch the
+  trackdisk.device that is inside extresbuf.
+- Improved NoClick module: Changed the patching method to work with all
+  V37+ ROM versions. Made it possible to patch the trackdisk.device that
+  is inside extresbuf.
+- Improved FixMath404 module: Made it possible to patch the
+  mathieeesingbas.library that is inside extresbuf. Made the module
+  recognize the A3000 mathieeesingbas.library that has only FPU
+  routines, and thus doesn't have the bug. (Max)
+- Improved romfixes module: Added patch for 68000/68010 utility.library
+  UMult64() bug.
+- Modified files since 1.24beta4:
+    BlizKick.readme
+    BlizKick/BlizKick.guide
+    BlizKick/Modules/FixMath404
+    BlizKick/Modules/FixMath404.ASM
+    BlizKick/Modules/hackdisk
+    BlizKick/Modules/hackdisk.ASM
+    BlizKick/Modules/NoClick
+    BlizKick/Modules/NoClick.ASM
+    BlizKick/Modules/romfixes
+    BlizKick/Modules/romfixes.ASM
+
+         V1.24beta4:
+
+- Improved romfixes module: Added patch for exec ReleaseSemaphore() bug.
+- Modified files since 1.24beta3:
+    BlizKick.readme
+    BlizKick/BlizKick.guide
+    BlizKick/Modules/romfixes
+    BlizKick/Modules/romfixes.ASM
+
+         V1.24beta3:
+
+- Fixed very long-standing and stupid bug in BlizKick that affected CLI
+  it was run from (BlizKick used to do Forbid() before terminating, very
+  bad idea for a CLI program). Probably solves lots of problems that I
+  haven't been able to identify before (for example, this bug caused
+  CLI's TC_EXCEPTCODE to work very unreliably).
+- I broke CPU Card support in 1.22beta8 when I added 256K ROM support:
+  I wrote 'move.l' when I should have written 'cmp.l'. Again this makes
+  me think asm coding is something really stupid. Now A3640 and friends
+  should work again, I hope.
+- Modified files since 1.24beta2:
+    BlizKick.readme
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/BlizKick.guide
+
+         V1.24beta2:
+
+- Improved romfixes module: Added patches for exec FreePooled(),
+  graphics WriteChunkyPixels(), WritePixelArray8() and
+  WritePixelLine8() bugs.
+- Included new KingCON-handler.pch from new RemAPollo, maybe it works
+  with OS 3.5 now?
+- Fixed SPEEDROM from BlizKick and applypatch, it used to make the last
+  romtag's RT_EndSkip point at $fffffe, and due to a bug in ROM (as a
+  side-effect it made longword read access from that address) this made
+  the hw buserror machines barf. Fixed it to point at $fffffa. Special
+  thanks to Gunther Nikl for help.
+- Modified files since 1.24beta1:
+    BlizKick.readme
+    BlizKick/applypatch
+    BlizKick/applypatch.e
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/BlizKick.guide
+    BlizKick/Modules/romfixes
+    BlizKick/Modules/romfixes.ASM
+
+         V1.24beta1:
+
+- Fixed SaveROM to work with broken DMA SCSI device drivers and MMU
+  mapped ROM.
+- Total rewrite of BlizKick 68040 and 68060 cache & MMU routines.
+  *Much* better now.
+- Improved AlertFix module: Fixed to work with 68040 (Henes). Added
+  NewAlert module support to AlertFix, ie. now it makes regular
+  Alerts call NewAlert too. Found two bugs from OS Alert code, now
+  has fix for these. Fixed silly bug that has been there from v1.0
+  of the module, it never got the task pointer right (on BPPC). No
+  longer requires 68040+ CPU, work 68020+.
+- Improved romfixes module: Added patch for the alert bug (yes, only
+  one of the two new bugs can be fixed by romfixes module).
+- Improved NewAlert module: It is now MMU aware where needed. Made
+  it play well together with AlertFix module.
+- Modified files since 1.23:
+    BlizKick.readme
+    BlizKick/BlizKick
+    BlizKick/BlizKick.ASM
+    BlizKick/BlizKick.guide
+    BlizKick/Modules/AlertFix
+    BlizKick/Modules/AlertFix.ASM
+    BlizKick/Modules/NewAlert
+    BlizKick/Modules/NewAlert.ASM
+    BlizKick/Modules/romfixes
+    BlizKick/Modules/romfixes.ASM
+
+
+ (Full version history is available in the BlizKick amigaguide)
+
+
+ Latest BlizKick beta release plus some other programs by me can be found
+ from http://www.iki.fi/sintonen/sw.html
