@@ -1,0 +1,28 @@
+Short:    BlizKick-Module: Disables IDE-interface
+Author:   sauer@cip.informatik.uni-wuerzburg.de (Christian Sauer)
+Uploader: sauer@cip.informatik.uni-wuerzburg.de (Christian Sauer)
+Type:     util/boot
+
+NoIDE is a module for the great BlizKick of Harry Sintonen, it disables
+scsi.device if you only have SCSI-devices in your machine...
+(Sounds silly, but scsi.device manages the IDE-interface %-))
+
+The purpose of this (hack) is to speed up the boot process which is up to
+30 seconds shorter on my system (A1200 with Blizzard 1260/60(!) & SCSI-Kit IV)! :-)
+
+- It doesn't use any Cool-/ColdCapture vectors
+- It's free
+- The coding helped me to forget my headache after a very long sylvesternight ;-)
+
+To use my patch, just copy the file 'NoIDE' to DEVS:modules/ and add 'DEVS:modules/NoIDE'
+to your BlizKick parameters - you should have installed the BlizKick package first, of course!
+
+Disclaimer:
+The author is in no way liable for any changes made to any part of the
+program, or consequences thereof as he is in no way liable for damages
+or loss of data directly or indirectly caused by this software.
+
+And last but not least:
+
+I wish every Amiga-User a happy new year '97!
+
