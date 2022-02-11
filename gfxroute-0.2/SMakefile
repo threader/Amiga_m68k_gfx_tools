@@ -1,0 +1,17 @@
+#
+# gfxroute-0.2
+# by megacz@usa.com
+#
+
+CC = sc cpu=68000 data=near code=near noicons optimize optimizerglobal \
+optimizerinlocal optimizerpeephole optimizersize optimizerschedule \
+optimizerloop optimizerinline link smalldata smallcode saveds \
+stripdebug nocheckabort nostackcheck parameters=registers nostartup 
+
+all: gfxroute
+
+gfxroute: gfxroute.c
+	$(CC) $< to $@
+
+clean:
+	-delete gfxroute.o gfxroute.lnk gfxroute

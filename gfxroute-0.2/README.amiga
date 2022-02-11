@@ -1,0 +1,124 @@
+
+gfxroute-0.2
+--------------
+
+---
+
+'gfxroute' allows to control 'AllocBitMap()' and 'AllocRaster()' of
+'fscreen' and/or 'cyberbugfix' so that old programs who require to
+put their planes into chip memory will work again on a patched system.
+
+---
+
+NEWS:
+
+    [04-Jul-2008]   0.2     rewritten to be smaller and faster and nicer.
+                            removed 'gfxrouteauto' since such "auto"
+                            functionality is now integrated in 'gfxroute'.
+                            output looks like in 'patchdet'.
+    [09-Dec-2007]   0.1-1   small fixes, there was a risk of deallocating
+                            memory twice in 'gfxrouteauto'.
+
+---
+
+NOTES:
+
+Requires 68000+(noFPU), OS 3.x, 4+ KiB of free memory, SaferPatches, CGFX
+(CGX-AGA,CyberBugfiX) v3 or v4, fscreen 0.21
+
+Toggling these patches seems to be quite safe, havent noticed problems
+so far, but if you find something dont hesitate and email me.
+
+Child process can be aborted with Control-C.
+
+If you use 'SystemPatch' then add '-Raster' to its command line or else
+disabling AllocRaster() of 'CGFX' will be pointless.
+
+If you use 'Fblit' own AllocBitMap() then disable it completly.
+
+Example programs that require these tools and what to exclude:
+ - 'Karate'(demo maker)                      - bitmap
+ - 'X'(XFree for the Amiga with driver 2.0)  - raster
+ - 'DigiBooster'(tracker)                    - bitmap
+ - some other old proggies
+
+Why 'cyber' is here? I found that switching off only 'fscreen's
+AllocBitMap() causes bobs to be displayed improperly so by default
+AllocBitMap() of CGFX is turned off as well to fix this problem.
+
+This release unlike 0.1 can toggle in both directions, if you specify
+'fast' and auto restore then the proggy will turn on the patches and
+then switch them off. Auto restore will be activated after passing
+timeout value.
+
+My own configuration files for 'CyberBugFix', 'Fblit' and 'mmu.library'
+included.
+
+'CGX-AGA'(the one for 68k) and 'CyberBugFix' can be found here:
+   http://dariog.republika.pl/download/cgx-aga.lha
+'CGFX' v3 is on Aminet:
+   http://aminet.net/biz/p5/cgxv41_r70a.lha
+for 'fscreen' go here(alpha):
+   http://www.grey13.com/files/fscreen021ntta.zip or
+or here(fscreen 0.21ntt - compressed with powerpacker):
+   http://aminet.net/docs/help/novahdguide.lha
+for 'mulib' go here:
+   http://aminet.net/util/libs/MMULib.lha
+
+Dont forget to hack 'SystemPatch', use some bin editor like 'ZapHod',
+find 'cybergraphics.library' and turn it into 'cybergraphics!library'.
+This is necessary if you want additional graphics patches to be
+applied(more speed) along with the CGFX subsystem running!
+
+This proggy can sit in scripts even if system does not met required
+dependencies.
+
+---
+
+USAGE:
+
+ *** template: gfxroute <[raster][+bitmap[-cyber]]/s> [chip|fast/s] [timeout/n]
+
+               raster  -  controls AllocRaster() of CGFX
+               bitmap  -  controls AllocBitMap() of fscreen
+               cyber   -  controls AllocBitMap() of CGFX                                    
+
+               chip    -  use chip memory for planes(switch off patches)
+               fast    -  use fast memory for planes(turn them on, def.)
+
+               timeout -  specify timeout for auto restoration
+
+---
+
+EXAMPLE:
+
+   gfxroute bitmap chip 10       ; block patch & wait 10 seconds for the screen
+   karate s=demo.txt w=320 h=240 ; screen opens = 'gfxroute' restores patch,
+                                 ; note that more time may be required in case
+                                 ; of requester.
+
+---
+
+STARTUP ORGANISATION FOR AGA:
+(these patches speed up aga a lot!)
+
+   ...
+   setpatch ; use 68040[60].library form THOR if possible
+   ...
+   run >nil: molib mmu.library ;someother.library ...
+   ; dont open any screens before launching these two!
+   CGX-AGA
+   CyberBugFix
+   ...
+   DblNTSC
+   ...
+   Fblit
+   ...
+   IPrefs
+   SystemPatch nolayers nu nd -AddBob -ClearRectRegion -Raster -RawDoFmt -Switch
+   ...
+   fscreen delay=1 lace prond   
+   ...
+
+---
+megacz@usa.com

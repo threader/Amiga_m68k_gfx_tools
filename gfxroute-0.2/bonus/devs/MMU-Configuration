@@ -1,0 +1,6 @@
+ClearMMU MEMORY 
+ClearMMU BLANK 
+ClearMMU EXPANSION 
+ClearMMU MOTHERBOARD
+ClearTTX ALL
+DescriptorCacheInhibit OFF
