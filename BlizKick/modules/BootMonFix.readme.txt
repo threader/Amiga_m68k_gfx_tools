@@ -1,0 +1,27 @@
+Short:        BlizKick module to disable monitor hacks in G-Rex/CVPPC/BVision
+Uploader:     daleyo@gmail.com (Dale Whinham)
+Author:       Dale Whinham
+Type:         util/boot
+Version:      1.0
+Architecture: m68k-amigaos >= 1.2.0
+Distribution: Aminet
+
+This module disables the BlizzardPPC/CSPPC "BootVGA.Monitor" resident,
+which is located in the accelerator's flash ROM and loaded during
+startup.
+
+The BootVGA resident is responsible for the "31KHz boot monitor" 
+feature of CyberStorm and Blizzard boards with CyberVisionPPC, BVision
+and G-Rex graphics cards. It also does some patching to copy Intuition
+screens into the gfxcard framebuffer UNTIL CyberGraphX is loaded.
+
+This could be undesirable if you have a second monitor, monitor switch
+or flickerfixer as it will hugely slow down non-CGX Intuition screens
+until CGX has loaded. It gets annoying if you boot from floppy as much
+as I do. :)
+
+This module simply disables it in the same way as Harry's BPPCFix040
+module does. Tested with AlgorKick on an Algor PRO with Voodoo3/G-Rex,
+Amiga 4000D.
+
+Thanks to Piru (Harry) for giving me the OK on releasing this! :)
