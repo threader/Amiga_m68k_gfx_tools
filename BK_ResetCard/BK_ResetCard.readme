@@ -1,0 +1,45 @@
+Short:    CardReset in form of module for BlizKick
+Author:   artpo@wp.pl (Artur Pogoda)
+Uploader: artpo@wp.pl (Artur Pogoda)
+Type:     util/boot
+Requires: util/boot/BlizKick, A1200 with Blizzard turbo board, OS 2.0+
+
+
+ Description:
+
+BK_ResetCard is pack of two modules for BlizKick (program written by
+Harry "Piru" Sintonen). These modules include main procedure of CardReset
+and force reset signal on Amiga PCMCIA slot. Module DosResetCard works
+very similar to CardReset, but ColdResetCard is run before "boot" devices
+are installed in system and boot block is loaded from disk.
+
+
+ Usage:
+
+BlizKick <path/name_ROM> <path/name_MODULE> EXTRESBUF=144
+
+ where:
+
+path/name_ROM      Full path and name Kickstart file, or * if original ROM
+                   should be used by BlizKick.
+
+path/name_MODULE   ColdResetCard or DosResetCard and names others modules
+                   that you use with BlizKick. Full path is required only
+                   if BKMODPATH variable has not been defined.
+
+EXTRESBUF          Size external buffer for modules. Both ColdResetCard and
+                   DosResetCard require 144 Bytes buffer lenght.
+
+
+ Installation:
+
+Copy DosResetCard and ColdResetCard to Devs:Modules directory.
+Modify parameters of BlizKick in your Startup-Sequence.
+Remove pcmciafix hardware hack (capacitor between CC_RESET and VCC).
+
+
+ Thanks to:
+
+Harry "Piru" Sintonen for cnet.device and BlizKick and more...
+Luca "Hexaae" Longone for your idea CardReset as module for BlizKick.
+And others Amiga people for good mails after release CardReset on Aminet.
